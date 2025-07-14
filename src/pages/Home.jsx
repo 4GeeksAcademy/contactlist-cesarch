@@ -1,6 +1,6 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Contacts } from "../components/Contacts.jsx";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -8,13 +8,13 @@ export const Home = () => {
   return (
     <div className="d-flex container-fluid bg-danger justify-content-left">
       <div>
+        <Link to ="/ContactView">
         <button type="button" className="btn btn-success">
           Add New Contact
         </button>
+        </Link>
       </div>
 	  <div>
-		<Contacts/>
-		<Contacts/>
 		<Contacts/>
 	  </div>
     </div>
