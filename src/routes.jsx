@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { ContactView } from "./pages/ContactView";
+import { DeleteContact } from "./components/DeleteContact";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(

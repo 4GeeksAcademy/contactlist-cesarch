@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { DeleteContact } from "./DeleteContact";
 
 export const Contacts = () => {
   const [contacts, setContacts] = useState([]);
+  const [selectedId, setSelectedId] = useState(null)
   useEffect(() => {
     getData();
   }, []);
@@ -20,6 +22,7 @@ export const Contacts = () => {
     }
   }
 
+
   return (
     <div className="d-flex container-fluid flex-column mx-auto mt-2">
       {contacts.map((item, index) => {
@@ -30,16 +33,31 @@ export const Contacts = () => {
               <p className="card-text">{item.address}</p>
               <p className="card-text">{item.phone}</p>
               <p className="card-text">{item.email}</p>
-              <Link to ="/ContactView">
+              <Link to="/ContactView">
                 <i className="fa-solid fa-pencil"></i>
               </Link>
-              <a href="#" className="btn btn-primary ms-2">
-                <i className="fa-solid fa-trash-can"></i>
-              </a>
-            </div>
-          </div>
+              
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => setSelectedId(item.id)}
+              >
+                <i className="fa-solid fa-trash-can">
+                </i>
+              </button>
+              </div>    
+                </div>
         );
       })}
+      {selectedId !== null && (
+        <DeleteContact
+          contactId={selectedId}
+          onDeleteSuccess={() => {
+            setSelectedId(null);
+            getData();
+          }}
+        />
+      )}
     </div>
   );
 };
